@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="profile-header">
+            <div class="avatar-container">
+                <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20avatar%20portrait%20of%20a%20person%2C%20corporate%20style%2C%20clean%20background%2C%20high%20quality%2C%20realistic&image_size=square_hd" alt="个人头像" class="avatar">
+                <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                <div class="avatar-overlay">
+                    <span>更换头像</span>
+                </div>
+            </div>
+            <h1 class="name">张三</h1>
+            <p class="occupation">财务主管/教师</p>
+        </header>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const avatarContainer = document.querySelector('.avatar-container');
+                const avatarUpload = document.getElementById('avatar-upload');
+                const avatar = document.querySelector('.avatar');
+
+                avatarContainer.addEventListener('click', function() {
+                    avatarUpload.click();
+                });
+
+                avatarUpload.addEventListener('change', function(e) {
+                    if (e.target.files && e.target.files[0]) {
+                        const reader = new FileReader();
+
+                        reader.onload = function(event) {
+                            avatar.src = event.target.result;
+                        }
+
+                        reader.readAsDataURL(e.target.files[0]);
+                    }
+                });
+            });
+        </script>
+        <section class="hobbies-section">
+            <h2 class="section-title">个人爱好</h2>
+            <ul class="hobbies-list">
+                <li class="hobby-item">象棋</li>
+                <li class="hobby-item">篮球</li>
+                <li class="hobby-item">乒乓球</li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
